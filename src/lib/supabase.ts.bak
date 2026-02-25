@@ -1,0 +1,25 @@
+import { createClient } from '@supabase/supabase-js';
+
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+
+export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
+export type Client = {
+  id: string;
+  type: 'personne_morale' | 'personne_physique';
+  company_name?: string;
+  ice?: string;
+  company_address?: string;
+  company_phone?: string;
+  company_email?: string;
+  representative_name?: string;
+  representative_email?: string;
+  representative_phone?: string;
+  full_name?: string;
+  address?: string;
+  email?: string;
+  phone?: string;
+  created_at: string;
+  updated_at: string;
+};

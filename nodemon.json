@@ -1,0 +1,7 @@
+{
+  "watch": ["backend"],
+  "ext": "js,json,exe",
+  "ignore": ["backend/pb_data/**", "backend/pb_migrations/**", "node_modules/**"],
+  "exec": "cd backend && pocketbase.exe serve",
+  "verbose": true
+}
