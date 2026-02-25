@@ -1,0 +1,21 @@
+# Render Blueprint - Deploy with "New > Blueprint" in Render Dashboard
+# This creates TWO services: PocketBase (backend) + Static Site (frontend)
+
+services:
+  # 1. PocketBase Backend - Docker Web Service
+  - type: web
+    runtime: docker
+    name: innokech-pocketbase
+    rootDir: backend
+    plan: free
+
+  # 2. Frontend - Static Site (Vite/React)
+  - type: web
+    runtime: static
+    name: innokech
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    envVars:
+      # Must match PocketBase service URL: https://<name>.onrender.com
+      - key: VITE_POCKETBASE_URL
+        value: https://innokech-pocketbase.onrender.com

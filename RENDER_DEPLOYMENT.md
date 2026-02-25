@@ -2,7 +2,21 @@
 
 Step-by-step guide to host your Vite + React frontend and PocketBase backend on Render (free tier).
 
+> **Important:** You need **TWO separate Render services** — one Web Service (PocketBase) and one Static Site (frontend). Deploying as a single Web Service will fail because `pocketbase.exe` is Windows-only and Render runs Linux.
+
 ---
+
+## Option A: Blueprint (Easiest — One-Click Setup)
+
+1. Go to [Render Dashboard](https://dashboard.render.com/) → **New +** → **Blueprint**
+2. Connect your GitHub repo and select the `innokech` repository
+3. Render will detect `render.yaml` and create both services automatically
+4. Click **Apply**
+5. Wait for both to deploy, then configure CORS (see Part 3 below)
+
+---
+
+## Option B: Manual Setup
 
 ## Prerequisites
 
@@ -146,6 +160,7 @@ Your frontend and backend are on different domains. PocketBase must allow reques
 
 | Issue | Solution |
 |-------|----------|
+| `pocketbase.exe: not found` or `exec not found` | You deployed as a **single Web Service**. Delete it and use **Option A (Blueprint)** or create **two separate services** — a Docker Web Service for PocketBase + a Static Site for the frontend. |
 | Frontend shows "Failed to fetch" or CORS errors | Add your frontend URL to PocketBase CORS (Part 3). |
 | Backend returns 404 | Ensure Root Directory is `backend` for the Web Service. |
 | Build fails | Check build logs; ensure `backend/pb_migrations` exists in the repo. |
